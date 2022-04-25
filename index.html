@@ -20,99 +20,27 @@
     src="https://unpkg.com/@babel/standalone/babel.min.js"
   ></script>
   <script type="text/babel">
-    function MinutesToHours() {
-      const [amount, setAmount] = React.useState();
-      const [flipped, setFlipped] = React.useState(false);
-      const onChange = (event) => {
-        console.log(event.target.value);
-        setAmount(event.target.value);
-      };
-      const reset = () => setAmount(0);
-      const onFilp = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
+    function Btn({ banana }) {
       return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              value={flipped ? amount * 60 : amount}
-              id="minutes"
-              placehoder="Minutes"
-              type="Number"
-              onChange={onChange}
-              disabled={flipped}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              value={flipped ? amount : Math.round(amount / 60)}
-              id="minutes"
-              placehoder="Minutes"
-              type="Number"
-              disabled={!flipped}
-              onChange={onChange}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={onFilp}>Flip</button>
-        </div>
-      );
-    }
-    function KmToMiles() {
-      const [index, setIndex] = React.useState();
-      const [condition, setContion] = React.useState(false);
-      const onChangeValue = (event) => {
-        setIndex(event.target.value);
-      };
-      const onZerro = () => {
-        setIndex(0);
-      };
-      const onFilped = () => {
-        onZerro();
-        setContion((current) => !current);
-      };
-      return (
-        <div>
-          <h3>Km 2 Mile</h3>
-          <label htmlFor="Km">Km</label>
-          <input
-            value={condition ? index : (index * 1.61).toFixed(2)}
-            id="Km"
-            type="Number"
-            placehoder="Km"
-            onChange={onChangeValue}
-            disabled={condition}
-          />
-          <label htmlFor="Mile">Mile</label>
-          <input
-            value={index ? (index * 1.61).toFixed(2) : index}
-            id="Mile"
-            type="Number"
-            placehoder="Mile"
-            onChange={onChangeValue}
-            disabled={!condition}
-          />
-          <button onClick={setIndex}>reset</button>
-          <button onClick={onFilped}>flipped</button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            marginRight: 10,
+          }}
+        >
+          {banana}
+        </button>
       );
     }
     function App() {
-      const [index, setIndex] = React.useState(0);
-      const onSelect = (event) => {
-        setIndex(parseInt(event.target.value));
-      };
       return (
         <div>
-          <h1 className="hi">Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="0">Minutes & Houres</option>
-            <option value="1">Km & Miles</option>
-          </select>
-          {index ? <KmToMiles /> : <MinutesToHours />}
+          <Btn banana="Save Changes" />
+          <Btn banana="Continue" />
         </div>
       );
     }
