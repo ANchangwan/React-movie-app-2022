@@ -20,9 +20,10 @@
     src="https://unpkg.com/@babel/standalone/babel.min.js"
   ></script>
   <script type="text/babel">
-    function Btn({ banana }) {
+    function Btn({ text, onClick }) {
       return (
         <button
+          onClick={onClick}
           style={{
             backgroundColor: "tomato",
             color: "white",
@@ -32,15 +33,20 @@
             marginRight: 10,
           }}
         >
-          {banana}
+          {text}
         </button>
       );
     }
+    const MeorizedBtn = React.memo(Btn);
     function App() {
+      const [value, setValue] = React.useState("Save Change");
+      const changeValue = () => {
+        setValue("Revert Changes");
+      };
       return (
         <div>
-          <Btn banana="Save Changes" />
-          <Btn banana="Continue" />
+          <MeorizedBtn text={value} onClick={changeValue} />
+          <MeorizedBtn banana="Continue" />
         </div>
       );
     }
