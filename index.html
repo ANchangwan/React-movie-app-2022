@@ -19,11 +19,14 @@
     crossorigin
     src="https://unpkg.com/@babel/standalone/babel.min.js"
   ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/prop-types@15.7.2/prop-types.js "
+  ></script>
   <script type="text/babel">
-    function Btn({ text, onClick }) {
+    function Btn({ text, fontSize }) {
       return (
         <button
-          onClick={onClick}
           style={{
             backgroundColor: "tomato",
             color: "white",
@@ -31,13 +34,17 @@
             border: 0,
             borderRadius: 10,
             marginRight: 10,
+            fontSize,
           }}
         >
           {text}
         </button>
       );
     }
-    const MeorizedBtn = React.memo(Btn);
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      fontSize: PropTypes.number.isisRequired,
+    };
     function App() {
       const [value, setValue] = React.useState("Save Change");
       const changeValue = () => {
@@ -45,8 +52,8 @@
       };
       return (
         <div>
-          <MeorizedBtn text={value} onClick={changeValue} />
-          <MeorizedBtn banana="Continue" />
+          <Btn text={"change Save"} fontSize={18} />
+          <Btn text="Continue" />
         </div>
       );
     }
